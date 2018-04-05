@@ -30,14 +30,17 @@
     </h:form>
 </ui:fragment>
 
-<h:form id="loginForm" rendered="#{not identity.loggedIn}">
-    <h:messages globalOnly="true"/>
+<h:messages globalOnly="true"/>
 
+<h:form id="loginForm" rendered="#{not identity.loggedIn}">
+	<h2>Log in with user/pass</h2>
+    
+
+	
     <div class="loginRow">
         <h:outputLabel for="name" value="Username" styleClass="loginLabel"/>
         <h:inputText id="name" value="#{loginCredentials.userId}"/>
     </div>
-
     <div class="loginRow">
         <h:outputLabel for="password" value="Password" styleClass="loginLabel"/>
         <h:inputSecret id="password" value="#{loginCredentials.password}" redisplay="true"/>
@@ -54,6 +57,16 @@
     Tip: you can login with a username/password of jsmith/abc123.
 
 </h:form>
+
+<h:form id="googleForm" rendered="#{not identity.loggedIn}">
+    <h:messages globalOnly="true"/>
+    <input type="hidden" name="login" value="google" />
+    <div class="buttons">
+        <h:commandButton id="login" action="home.xhtml" value="Log in with Google"/>
+    </div>
+</h:form>
+
+
 
 <br style="clear:both"/>
 
