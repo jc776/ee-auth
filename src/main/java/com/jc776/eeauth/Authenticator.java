@@ -4,6 +4,7 @@ import org.picketlink.annotations.PicketLink;
 import org.picketlink.authentication.BaseAuthenticator;
 import org.picketlink.credential.DefaultLoginCredentials;
 import org.picketlink.idm.model.basic.User;
+import org.picketlink.internal.DefaultIdentity;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -25,11 +26,16 @@ public class Authenticator extends BaseAuthenticator {
 
     @Inject
     private FacesContext facesContext;
+    
+    // this is what we do, is it correct?
+    @Inject
+    private DefaultIdentity identity;
 
     @Override
     public void authenticate() {
         if ("jsmith".equals(credentials.getUserId()) &&
                 "abc123".equals(credentials.getPassword())) {
+        	((CustomIdentity)this.identity).postLoginSetup();
             setStatus(AuthenticationStatus.SUCCESS);
             setAccount(new User("jsmith"));
         } else {

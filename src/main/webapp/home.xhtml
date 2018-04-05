@@ -23,6 +23,7 @@
 
 <ui:fragment rendered="#{identity.loggedIn}">
     <div>Congratulations! You are currently logged in as: <b>#{identity.account.loginName}</b></div>
+    <div>Custom message: #{identity.msg}</div>
 
     <h:form>
         <h:commandButton id="logout" value="Log out" action="#{identity.logout}"/>
